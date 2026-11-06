@@ -86,6 +86,9 @@ other app is ignored, so the release would get the wrong version.
 3. **AppA - Build** runs, checks that the tag matches the version GitVersion computes, and uploads AppA to the release.
    **AppB - Build** sees that the tag isn't AppB's and skips its jobs.
 
+The release asset is a zip of a framework-dependent build. Unzip it and run `dotnet appa.dll Ada` (or
+`dotnet appb.dll some words`) on any OS with the .NET 10 runtime.
+
 If **AppA - Build** fails because the tag doesn't match AppA's version, the release is published without AppA in it.
 Moving the tag and re-running the job doesn't help, because a re-run builds the original commit. Delete the release and
 its tag, then create it again on the commit that `ShowReleases` prints:

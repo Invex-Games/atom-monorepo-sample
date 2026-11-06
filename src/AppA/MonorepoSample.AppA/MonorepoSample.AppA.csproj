@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <AssemblyName>appa</AssemblyName>
+    <!-- The release ships a framework-dependent appa.dll that runs on any OS. A native launcher would only run on the
+         runner's OS, and GitHub artifacts drop its execute bit on the way to the release job. -->
+    <UseAppHost>false</UseAppHost>
   </PropertyGroup>
 
   <ItemGroup>
