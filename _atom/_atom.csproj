@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <RootNamespace>Atom</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Invex.Atom.Module.Dotnet" />
+    <PackageReference Include="Invex.Atom.Module.GitHubWorkflows" />
+    <PackageReference Include="Invex.Atom.Module.GitVersion" />
+  </ItemGroup>
+
+</Project>

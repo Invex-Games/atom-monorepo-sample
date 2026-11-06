@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/_atom/">
+    <Project Path="_atom/_atom.csproj" />
+  </Folder>
+  <Folder Name="/AppA/">
+    <Project Path="src/AppA/MonorepoSample.AppA/MonorepoSample.AppA.csproj" />
+    <Project Path="src/AppA/MonorepoSample.AppA.Tests/MonorepoSample.AppA.Tests.csproj" />
+  </Folder>
+  <Folder Name="/AppB/">
+    <Project Path="src/AppB/MonorepoSample.AppB/MonorepoSample.AppB.csproj" />
+    <Project Path="src/AppB/MonorepoSample.AppB.Tests/MonorepoSample.AppB.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="src/Shared/MonorepoSample.Shared/MonorepoSample.Shared.csproj" />
+    <Project Path="src/Shared/MonorepoSample.Shared.Tests/MonorepoSample.Shared.Tests.csproj" />
+  </Folder>
+</Solution>
