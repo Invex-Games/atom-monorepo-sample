@@ -1,0 +1,21 @@
+<Project>
+  <!-- Central package versions. A change here affects every product, because Directory.Packages.* is a global path. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup Label="Build">
+    <PackageVersion Include="Invex.Atom.Module.Dotnet" Version="5.1.0-beta.feature-cld-atom-monorepo.35" />
+    <PackageVersion Include="Invex.Atom.Module.GitHubWorkflows" Version="5.1.0-beta.feature-cld-atom-monorepo.35" />
+    <PackageVersion Include="Invex.Atom.Module.GitVersion" Version="5.1.0-beta.feature-cld-atom-monorepo.35" />
+  </ItemGroup>
+
+  <ItemGroup Label="Tests">
+    <PackageVersion Include="coverlet.collector" Version="10.1.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <PackageVersion Include="NUnit" Version="5.0.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="6.3.1" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.15.0" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
+  </ItemGroup>
+</Project>

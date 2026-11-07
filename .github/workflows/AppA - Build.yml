@@ -1,0 +1,81 @@
+name: AppA - Build
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - src/AppA/**
+      - src/Shared/**
+      - global.json
+      - Directory.Build.*
+      - Directory.Packages.*
+      - _atom/**
+      - .github/workflows/**
+      - .devops/workflows/**
+  release:
+    types: [ released ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  PackAppA:
+    if: github.event_name != 'release' || startsWith(github.event.release.tag_name, 'appa/v')
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 10.0.x
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: PackAppA
+        id: PackAppA
+        run: dotnet run --project _atom/_atom.csproj -- PackAppA --skip --headless
+        env:
+          product: AppA
+
+      - name: Store MonorepoSample.AppA
+        uses: actions/upload-artifact@v7
+        with:
+          name: MonorepoSample.AppA
+          path: '${{ github.workspace }}/.github/publish/MonorepoSample.AppA'
+
+  ReleaseAppA:
+    permissions:
+      contents: write
+    needs: [ PackAppA ]
+    if: (github.event_name != 'release' || startsWith(github.event.release.tag_name, 'appa/v')) && github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 10.0.x
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Retrieve MonorepoSample.AppA
+        uses: actions/download-artifact@v8
+        with:
+          name: MonorepoSample.AppA
+          path: '${{ github.workspace }}/.github/artifacts/MonorepoSample.AppA'
+
+      - name: ReleaseAppA
+        id: ReleaseAppA
+        run: dotnet run --project _atom/_atom.csproj -- ReleaseAppA --skip --headless
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          product: AppA
+

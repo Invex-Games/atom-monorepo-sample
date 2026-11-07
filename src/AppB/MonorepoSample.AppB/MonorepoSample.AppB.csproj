@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>appb</AssemblyName>
+    <!-- The release ships a framework-dependent appb.dll that runs on any OS. A native launcher would only run on the
+         runner's OS, and GitHub artifacts drop its execute bit on the way to the release job. -->
+    <UseAppHost>false</UseAppHost>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\MonorepoSample.Shared\MonorepoSample.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="MonorepoSample.AppB.Tests" />
+  </ItemGroup>
+
+</Project>
